@@ -1,5 +1,6 @@
 'use client'
-import { useState } from "react"
+import React, { useState } from "react"
+import Results from "../../components/Results"
 
 const Page = () => {
     const [currentRanking, setCurrentRanking] = useState([
@@ -24,11 +25,11 @@ const Page = () => {
     }
 
   return (
-    <div className="flex gap-4 place-content-center">
+    <div className="flex flex-col gap-4 place-content-center">
         <button onClick={() => handleChoice(currentIndex)}>{currentRanking[currentIndex]}</button>
         <button onClick={() => handleChoice(currentIndex + 1)}>{currentRanking[currentIndex + 1]}</button>
       <div>
-        {currentRanking}
+        <Results ranking={currentRanking}></Results>
       </div>
     </div>
   )
