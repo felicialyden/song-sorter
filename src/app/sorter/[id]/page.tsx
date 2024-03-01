@@ -7,19 +7,21 @@ import "./sorter.scss";
 const Page = () => {
   const [currentRanking, setCurrentRanking] = useState(evermore);
   const [currentIndexes, setCurrentIndexes] = useState([0, 1]);
-  const [indexDiff, setIndexDiff] = useState(1);
+  const [indexDiff, setIndexDiff] = useState(2);
 
   const handleChoice = (choice: number) => {
     console.log(choice);
 
-    if(!currentRanking[currentIndexes[0] + 2]) {
-      console.log('alt 1')
+    if(!currentRanking[currentIndexes[0] + indexDiff] && !currentRanking[currentIndexes[1] + indexDiff]) {
       setCurrentIndexes([0 , 2])
-    } else if (!currentRanking[currentIndexes[1] + 2]) {
-      console.log('alt 2')
-      setCurrentIndexes([currentIndexes[0] + 2 , 0])
+      setIndexDiff(indexDiff * 2)
+    } else if (!currentRanking[currentIndexes[0] + indexDiff] && currentRanking[currentIndexes[1] + indexDiff]) {
+      setCurrentIndexes([0 , 2])
+    } else if (!currentRanking[currentIndexes[1] + indexDiff]) {
+      setCurrentIndexes([currentIndexes[0] + indexDiff , 0])
+      setIndexDiff(indexDiff * 2)
     } else {
-      setCurrentIndexes([currentIndexes[0] + 2 , currentIndexes[1] + 2])
+      setCurrentIndexes([currentIndexes[0] + indexDiff , currentIndexes[1] + indexDiff])
     }
 
     if (choice === currentIndexes[0]) {
@@ -31,7 +33,6 @@ const Page = () => {
       newRanking.splice(choice - 1, 0, songToMove);
       setCurrentRanking(newRanking);
     }
-
     console.log(currentRanking);
   };
 
