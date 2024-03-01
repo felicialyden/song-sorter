@@ -3,11 +3,13 @@ import React, { useState } from "react";
 import { evermore } from "@/evermore";
 import Card from "@/components/Card";
 import "./sorter.scss";
+import { useRouter } from "next/navigation";
 
 const Page = () => {
   const [currentRanking, setCurrentRanking] = useState(evermore);
   const [currentIndexes, setCurrentIndexes] = useState([0, 1]);
   const [indexDiff, setIndexDiff] = useState(2);
+  const router = useRouter()
 
   const handleChoice = (choice: number) => {
     console.log(choice);
@@ -33,6 +35,11 @@ const Page = () => {
       ]);
     }
     updateRanking(choice)
+
+    if(indexDiff * 2 > currentRanking.length) {
+      localStorage.setItem('ranking', JSON.stringify(currentRanking))
+      router.push('/results')
+    }
 
     console.log(currentRanking);
   };
