@@ -1,12 +1,17 @@
+import Card from "@/components/Card";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-      <button className="button is-warning is-outlined">
-        Button
-      </button>
+    <main>
+      <div>
+        <div className="container mt-6 has-text-centered">
+          <h2 className="title is-4">Pick your favorite song:</h2>
+          <div className="columns is-justify-content-center">
+            <Card title="one" />
+            <Card title="two" />
+          </div>
+        </div>
       </div>
     </main>
-  )
+  );
 }
