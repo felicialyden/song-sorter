@@ -9,6 +9,7 @@ const Page = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleChoice = (choice: number) => {
+    console.log(choice)
     if (choice === currentIndex) {
       setCurrentIndex((prev) => prev + 2);
     } else {
@@ -19,14 +20,15 @@ const Page = () => {
       setCurrentRanking(newRanking);
       setCurrentIndex((prev) => prev + 2);
     }
+    console.log(currentRanking)
   };
 
   return (
     <div className="container mt-6 has-text-centered">
       <h2 className="title is-4">Pick your favorite song:</h2>
       <div className="columns is-justify-content-center">
-        <Card title={currentRanking[0]} />
-        <Card title={currentRanking[1]} />
+        <Card title={currentRanking[currentIndex]} index={currentIndex} choiceHandler={handleChoice}/>
+        <Card title={currentRanking[currentIndex + 1]} index={currentIndex + 1} choiceHandler={handleChoice}/>
       </div>
     </div>
   );
