@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { evermore } from "@/evermore";
 import Card from "@/components/Card";
+import './sorter.scss'
 
 const Page = () => {
   const [currentRanking, setCurrentRanking] = useState(evermore);
